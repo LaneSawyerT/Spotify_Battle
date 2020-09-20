@@ -1,0 +1,58 @@
+.main {
+    background-color: #000;
+}
+
+@media only screen and (min-width: 992px) {
+    .battle-photo {
+    opacity: 0.6;
+    width: 80vw;
+    } 
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px)  { 
+    .battle-photo {
+    opacity: 0.6;
+    width: 90vw;
+    }
+ }
+
+@media only screen and (max-width: 767px) { 
+     .battle-photo {
+    opacity: 0.6;
+    width: 90vw;
+    }
+  }
+
+.battle {
+    
+}
+
+.info-text{
+    color: #FFF;
+}
+
+.info, .playlist {
+    margin-top:30px;
+}
+
+
+.header {
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    text-align: center;
+    color: #1ED760;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
+
+}
+
+.artistID1 {
+    margin-top:60px;
+}
+
+.artistID2 {
+    margin-top:60px;    
+}
