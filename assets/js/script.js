@@ -1,19 +1,22 @@
 
 const baseURL = 'https://api.t4ils.dev/artistInfo?artistid=';
+var returnedData;
 
-function getData(artistID, cb) {
+function getData(artistID, callback) {
     var xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             // console.log(JSON.parse(this.responseText))
-            cb(JSON.parse(this.responseText));
+            let timer = setTimeout(callback(JSON.parse(this.responseText)), 200);
         }
     };
 
     xhr.open("GET", baseURL + artistID);
     xhr.send();
 }
+
+var usedID = [];
 
 var artistID = ['0LcJLqbBmaGUft1e9Mm8HV', '4dpARuHxo51G3z768sgnrY', 						
         '66CXWjxzNUsdJxJ2JdwvnR', '4q3ewBCX7sLwd24euuV69X',
@@ -45,10 +48,51 @@ var artistID = ['0LcJLqbBmaGUft1e9Mm8HV', '4dpARuHxo51G3z768sgnrY',
         var artistID1 = Math.floor((Math.random() * 50));
         var artistID2 = Math.floor((Math.random() * 50));
 
-function retrieveAPIData(artist) {
+function retrieveAPIData(artist, artistNum) {
+    usedID.push(artist);
     getData(artistID[artist], function(data) {
-        console.log(data);
+        returnedData = data;
+        displayArtist(data, artistNum);
     });
 }
 
-retrieveAPIData(artistID1);
+function displayArtist(data, artistNum) {
+    let artistID = artistNum === 1 ? "artistImage1" : "artistImage2";
+    let artistName = artistNum === 1 ? "artistName1" : "artistName2";
+    let artistCount = artistNum === 1 ? "artistCount1" : "artistCount2";
+    document.getElementById(artistID).src = data["data"]["header_image"]["image"];
+    document.getElementById(artistName).innerText = data["data"]["info"]["name"];
+    document.getElementById(artistCount).innerText = data["data"]["monthly_listeners"]["listener_count"];
+}
+
+function getNextNumber() {
+
+
+    while(true) {
+        var artistID = Math.floor((Math.random() * 50));
+        if (!usedID.includes(artistID)) {
+            return artistID;
+        }
+    }
+
+
+}
+
+retrieveAPIData(artistID1,1);
+retrieveAPIData(artistID2,2);
+
+document.getElementById("artistImage1").addEventListener("click", function() {
+    if (parseInt(document.getElementById("artistCount1").innerText) > parseInt(document.getElementById("artistCount2").innerText)){
+        alert('you got it right!')
+        var artistID = getNextNumber();
+        retrieveAPIData(artistID,2)
+    }
+});
+
+document.getElementById("artistImage2").addEventListener("click", function(){
+    if (parseInt(document.getElementById("artistCount2").innerText) > parseInt(document.getElementById("artistCount1").innerText)){
+        alert('you got it right!')
+        var artistID = getNextNumber();
+        retrieveAPIData(artistID,1)
+    }
+});

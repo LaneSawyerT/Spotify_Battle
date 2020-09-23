@@ -49,10 +49,16 @@
 
 }
 
-.artistID1 {
+#artistImage1 {
     margin-top:60px;
+    width: 100%;
 }
 
-.artistID2 {
-    margin-top:60px;    
+#artistImage2 {
+    width: 100%;
+}
+
+span {
+    /* display: none; */
+    color: white;
 }
