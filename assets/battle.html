@@ -1,45 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Spotify Battle</title>
+  </head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
-	<link rel="stylesheet" href="css/style.css" />
-	<title>Spotify Battle</title>
-</head>
+<!-- Header -->
+  <body class="main">
+    <div class="container">
+      <div class="row">
+        <div class="offset-lg-3 col-lg-6">
+          <h1 class="header"><a href="index.html"><i class="fab fa-spotify"></i> Spotify Battle</a></h1>
+        </div>
+      </div>
+      <!-- Artist 1 -->
+      <div class="row">
+        <div class="offset-lg-2 col-lg-8 artistID1" id="a1">
+          <div class="shadow p-3 mb-5 col-lg-5 artist-box box-position-1">
+            <h2 id="artistName1"></h2>
+            <span id="artistCount1"></span>
+            <p class="counter" id="disCount1"></p>
+          </div>
+          <img id="artistImage1" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="divider offset-lg-2 col-lg-8">
+          <hr />
+        </div>
+      </div>
+      <!-- Artist 2 -->
+      <div class="row">
+        <div class="offset-lg-2 col-lg-8 artistID2" id="a2">
+          <div class="shadow p-3 mb-5 col-lg-5 artist-box box-position-2">
+            <h2 id="artistName2"></h2>
+            <span id="artistCount2"></span>
+            <p class="counter" id="disCount2"></p>
+          </div>
+          <img id="artistImage2" />
+        </div>
+      </div>
+    </div>
+    <!-- Correct Modal -->
+    <div
+      class="modal fade"
+      id="correctModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Results</h5>
+          </div>
+          <div class="modal-body">
+            You got it right!<br>
+            <div style="width:100%;height:0;padding-bottom:57%;position:relative;"><iframe src="https://giphy.com/embed/1yjZXySg7tSohpcmUM" width="100%" height="100%" style="position:absolute"  class="giphy-embed"></iframe></div><p><a href="https://giphy.com/gifs/queen-we-are-the-champions-1yjZXySg7tSohpcmUM">via GIPHY</a></p>
 
-<body class="main">
 
-	<div class="container">
-		<div class="row">
-			<div class="offset-lg-3 col-lg-6">
-				<h1 class="header">Spotify Battle</h1>
-			</div>
-            </div>
-            <div class="row">
-			<div class="offset-lg-2 col-lg-8 artistID1">
-                <h1 id="artistName1"></h1>
-				<img id="artistImage1">
-                <span id="artistCount1"></span>
-			</div>
-            </div>
-            <div class="row">
-			<div class="offset-lg-2 col-lg-8 artistID2">
-                <h1 id="artistName2"></h1>
-                <img id="artistImage2">
-                <span id="artistCount2"></span>
-			</div>
-            </div>
-		</div>
-    
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
-	<script src="js/script.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</body>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- False Modal -->
+    <div class="modal fade" id="falseModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Results</h5>
+      </div>
+      <div class="modal-body">
+        That's not correct! <br>
+        <div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/3o6MbaH9LYlaVpHWBa" width="100%" height="100%" style="position:absolute" class="giphy-embed"></iframe></div><p><a href="https://giphy.com/gifs/music-video-aaliyah-try-again-3o6MbaH9LYlaVpHWBa">via GIPHY</a></p>
+      </div>
+      <div class="modal-footer">
+        <button
+              onclick="window.location.reload();"
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Play Again
+            </button>
+      </div>
+    </div>
+  </div>
+</div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </body>
 </html>

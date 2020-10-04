@@ -9,6 +9,8 @@ function getData(artistID, callback) {
         if (this.readyState === 4 && this.status === 200) {
             // console.log(JSON.parse(this.responseText))
             let timer = setTimeout(callback(JSON.parse(this.responseText)), 200);
+        } else if (this.readyState === 4 && this.status === 500) {
+            let timer = setTimeout(getData(artistID,callback), 500);
         }
     };
 
@@ -45,11 +47,12 @@ var artistID = ['0LcJLqbBmaGUft1e9Mm8HV', '4dpARuHxo51G3z768sgnrY',
 		'51Blml2LZPmy7TTiAg47vQ', '23zg3TcAtWQy7J6upgbUnj',
 		];
 
-        var artistID1 = Math.floor((Math.random() * 50));
-        var artistID2 = Math.floor((Math.random() * 50));
+        // var artistID1 = Math.floor((Math.random() * 50));
+        // var artistID2 = Math.floor((Math.random() * 50));
 
 function retrieveAPIData(artist, artistNum) {
-    usedID.push(artist);
+    let artistDiv = artistNum === 1 ? "artistImage1" : "artistImage2";
+    document.getElementById(artistDiv).src = "./images/loading.png";
     getData(artistID[artist], function(data) {
         returnedData = data;
         displayArtist(data, artistNum);
@@ -60,17 +63,24 @@ function displayArtist(data, artistNum) {
     let artistID = artistNum === 1 ? "artistImage1" : "artistImage2";
     let artistName = artistNum === 1 ? "artistName1" : "artistName2";
     let artistCount = artistNum === 1 ? "artistCount1" : "artistCount2";
+    let counter = artistNum === 1 ? "disCount1" : "disCount2";
     document.getElementById(artistID).src = data["data"]["header_image"]["image"];
     document.getElementById(artistName).innerText = data["data"]["info"]["name"];
     document.getElementById(artistCount).innerText = data["data"]["monthly_listeners"]["listener_count"];
+    document.getElementById(counter).style.display = "none";
 }
 
 function getNextNumber() {
 
+    if (usedID.length === 50) {
+        alert("Game over!");
+          return;// put a game over function here
+    }
 
     while(true) {
         var artistID = Math.floor((Math.random() * 50));
         if (!usedID.includes(artistID)) {
+            usedID.push(artistID);
             return artistID;
         }
     }
@@ -78,21 +88,48 @@ function getNextNumber() {
 
 }
 
-retrieveAPIData(artistID1,1);
-retrieveAPIData(artistID2,2);
+retrieveAPIData(getNextNumber(),1);
+retrieveAPIData(getNextNumber(),2);
 
-document.getElementById("artistImage1").addEventListener("click", function() {
-    if (parseInt(document.getElementById("artistCount1").innerText) > parseInt(document.getElementById("artistCount2").innerText)){
-        alert('you got it right!')
+document.getElementById("a1").addEventListener("click", function() {
+    let a1count = parseInt(document.getElementById("artistCount1").innerText);
+    let a2count = parseInt(document.getElementById("artistCount2").innerText);
+    if (a1count > a2count){
+        $('#correctModal').modal('show')
         var artistID = getNextNumber();
-        retrieveAPIData(artistID,2)
+        dispCount("disCount1", parseInt(document.getElementById("artistCount1").innerText));
+        dispCount("disCount2", parseInt(document.getElementById("artistCount2").innerText));
+        setTimeout(function() {retrieveAPIData(artistID,2)}, 4000)
+    } else {
+        $('#falseModal').modal('show')
+    }
+}); 
+
+document.getElementById("a2").addEventListener("click", function(){
+    let a1count = parseInt(document.getElementById("artistCount1").innerText);
+    let a2count = parseInt(document.getElementById("artistCount2").innerText);
+    if (a2count > a1count){
+        $('#correctModal').modal('show')
+        var artistID = getNextNumber();
+        dispCount("disCount1", parseInt(document.getElementById("artistCount1").innerText));
+        dispCount("disCount2", parseInt(document.getElementById("artistCount2").innerText));
+        setTimeout(function() {retrieveAPIData(artistID,1)}, 4000)
+    } else {
+        $('#falseModal').modal('show')
     }
 });
 
-document.getElementById("artistImage2").addEventListener("click", function(){
-    if (parseInt(document.getElementById("artistCount2").innerText) > parseInt(document.getElementById("artistCount1").innerText)){
-        alert('you got it right!')
-        var artistID = getNextNumber();
-        retrieveAPIData(artistID,1)
+
+function dispCount(textEl, numbers) {
+    document.getElementById(textEl).style.display = "block";
+    setTimeout(function () {
+        document.getElementById(textEl).innerText = numbers.toLocaleString("en-US", { minimumFractionDigits: 0 });
+    }, 5000);
+    for (let n = 0; n < numbers; n = n + 10000) {
+        setTimeout(function () {
+            document.getElementById(textEl).innerText = n.toLocaleString("en-US", { minimumFractionDigits: 0 });
+        }, 500);
     }
-});
+    clearTimeout();
+    
+}

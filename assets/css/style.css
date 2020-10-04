@@ -1,64 +1,142 @@
+/* -----------Colours and Styling--------------*/
+
 .main {
-    background-color: #000;
+  background-color: #000;
 }
+
+.info-text {
+  color: #fff;
+}
+
+i {
+  color: #1ed760;
+}
+
+a {
+    color: #fff;
+}
+
+a:hover {
+    color: #1ed760;
+}
+
+a:link {
+  text-decoration: none ;
+  color: #fff;
+}
+
+.modal-content {
+    background-color:#333;
+    color: #fff;
+}
+
+h5 {
+    color: #1ed760;
+}
+
+/* -----------Media Queries--------------*/
 
 @media only screen and (min-width: 992px) {
-    .battle-photo {
+  .battle-photo {
     opacity: 0.6;
     width: 80vw;
-    } 
+  }
 }
 
-@media only screen and (max-width: 991px) and (min-width: 768px)  { 
-    .battle-photo {
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .battle-photo {
     opacity: 0.6;
     width: 90vw;
-    }
- }
-
-@media only screen and (max-width: 767px) { 
-     .battle-photo {
-    opacity: 0.6;
-    width: 90vw;
-    }
   }
+}
+
+@media only screen and (max-width: 767px) {
+  .battle-photo {
+    opacity: 0.6;
+    width: 90vw;
+  }
+}
+
+/* -----------Home Page--------------*/
 
 .battle {
-    
 }
 
-.info-text{
-    color: #FFF;
-}
 
-.info, .playlist {
-    margin-top:30px;
-}
 
+.info,
+.playlist {
+  margin-top: 30px;
+}
 
 .header {
-    position: absolute;
-    top: 15px;
-    width: 100%;
-    text-align: center;
-    color: #1ED760;
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
-
+  position: relative;
+  top: 15px;
+  width: 100%;
+  text-align: center;
+  color: #1ed760;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
 }
 
+/* -----------Battle Page--------------*/
 #artistImage1 {
-    margin-top:60px;
-    width: 100%;
+  /* margin-top: 60px; */
+  width: 100%;
+  z-index: -1
 }
 
 #artistImage2 {
-    width: 100%;
+  width: 100%;
+  z-index: -1
 }
 
 span {
-    /* display: none; */
-    color: white;
+  display: none;
+  color: white;
+}
+
+.counter {
+  color: black;
+  font-size: 14px;
+}
+
+.artist-box {
+  padding: 2em;
+  border: 1px solid #ccc;
+  display: block;
+  width: 50%;
+  float: left;
+  margin: -1px 0 0 -1px;
+  color: black;
+  background: linear-gradient(white, white 50%, #333 50%, #333);
+  background-size: 100% 202%;
+  transition: all 0.2s ease;
+  animation: down-bump 0.7s ease;
+}
+
+.artist-box:hover {
+  background-position: 100% 100%;
+  animation: up-bump 0.7s ease;
+}
+
+.artist-box:hover h2 {
+  color: #1ed760;
+}
+.artist-box:hover p {
+  color: white;
+}
+
+
+.box-position-1 {
+    position: absolute;
+    left: 15px;
+}
+
+.box-position-2 {
+    position: absolute;
+    right: 15px;
 }
