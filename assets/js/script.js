@@ -82,7 +82,7 @@ var artistID = [
 
 function retrieveAPIData(artist, artistNum) {
   let artistDiv = artistNum === 1 ? "artistImage1" : "artistImage2";
-  document.getElementById(artistDiv).src = "./images/loading.png";
+  document.getElementById(artistDiv).src = "./assets/images/loading.png";
   getData(artistID[artist], function (data) {
     returnedData = data;
     displayArtist(data, artistNum);
