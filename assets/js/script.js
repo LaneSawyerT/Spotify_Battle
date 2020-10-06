@@ -1,4 +1,4 @@
-const baseURL = "https://api.t4ils.dev/artistInfo?artistid=";
+const baseURL = "https://cors-anywhere.herokuapp.com/api.t4ils.dev/artistInfo?artistid=";
 var returnedData;
 
 function getData(artistID, callback) {
