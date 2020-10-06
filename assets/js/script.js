@@ -78,6 +78,8 @@ var artistID = [
 // var artistID1 = Math.floor((Math.random() * 50));
 // var artistID2 = Math.floor((Math.random() * 50));
 
+
+
 function retrieveAPIData(artist, artistNum) {
   let artistDiv = artistNum === 1 ? "artistImage1" : "artistImage2";
   document.getElementById(artistDiv).src = "./images/loading.png";
@@ -86,6 +88,10 @@ function retrieveAPIData(artist, artistNum) {
     displayArtist(data, artistNum);
   });
 }
+
+$(document).ready(function(){
+        $("#instructionModal").modal('show');
+    });
 
 function displayArtist(data, artistNum) {
   let artistID = artistNum === 1 ? "artistImage1" : "artistImage2";
@@ -136,7 +142,10 @@ document.getElementById("a1").addEventListener("click", function () {
     setTimeout(function () {
       retrieveAPIData(artistID, 2);
     }, 4000);
-    $("#correctModal").modal("show");
+    setTimeout(function() {
+    $('#correctModal').modal('show');
+}, 2000);
+    // $("#correctModal").modal("show");
   } else {
     
     dispCount(
@@ -147,7 +156,10 @@ document.getElementById("a1").addEventListener("click", function () {
       "disCount2",
       parseInt(document.getElementById("artistCount2").innerText)
     );
-    $("#falseModal").modal("show");
+    setTimeout(function() {
+    $('#falseModal').modal('show');
+}, 2000);
+    // $("#falseModal").modal("show");
   }
 });
 
@@ -168,9 +180,15 @@ document.getElementById("a2").addEventListener("click", function () {
     setTimeout(function () {
       retrieveAPIData(artistID, 1);
     }, 4000);
-    $("#correctModal").modal("show");
+    setTimeout(function() {
+    $('#correctModal').modal('show');
+}, 2000);
+    // $("#correctModal").modal("show");
   } else {
-    $("#falseModal").modal("show");
+    // $("#falseModal").modal("show");
+    setTimeout(function() {
+    $('#falseModal').modal('show');
+}, 2000);
     dispCount(
       "disCount1",
       parseInt(document.getElementById("artistCount1").innerText)
