@@ -6,6 +6,7 @@
 
 .info-text {
   color: #fff;
+  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
 }
 
 i {
@@ -13,60 +14,101 @@ i {
 }
 
 a {
-    color: #fff;
+  color: #fff;
 }
 
 a:hover {
-    color: #1ed760;
+  color: #1ed760;
 }
 
 a:link {
-  text-decoration: none ;
+  text-decoration: none;
   color: #fff;
 }
 
 .modal-content {
-    background-color:#333;
-    color: #fff;
+  background-color: #333;
+  color: #fff;
+}
+
+h1,
+h2 {
+  text-align: center;
 }
 
 h5 {
-    color: #1ed760;
+  color: #1ed760;
 }
 
-/* -----------Media Queries--------------*/
-
-@media only screen and (min-width: 992px) {
-  .battle-photo {
-    opacity: 0.6;
-    width: 80vw;
-  }
+.nav-bar {
+position: relative; 
+  background-color: #333;
+  box-shadow: 2px 2px 2px 2px #333;
+  z-index: 2; 
 }
 
-@media only screen and (max-width: 991px) and (min-width: 768px) {
-  .battle-photo {
-    opacity: 0.6;
-    width: 90vw;
-  }
+.vs {
+  color: #fff;
 }
 
-@media only screen and (max-width: 767px) {
-  .battle-photo {
-    opacity: 0.6;
-    width: 90vw;
-  }
+.footer {
+  background-color: #333;
 }
 
+.footer-text {
+  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
+  color: #fff;
+  text-align: center;
+}
 /* -----------Home Page--------------*/
 
 .battle {
+  position: relative;
 }
 
+.battle-text {
+  position: absolute;
+  text-align: center;
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  top: 60%;
+  left: 10%;
+  right: 10%;
+  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
+}
+.battle-text-mobile {
+  text-align: center;
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
+}
 
+.battle-button {
+  position: absolute;
+  padding: 16px 40px 16px;
+  line-height: 16px;
+  letter-spacing: 1.4px;
+  border-radius: 500px;
+  margin-left: 10%;
+  margin-right: 10%;
+  top: 80%;
+  left: 30%;
+  right: 30%;
+  z-index: 2;
+}
 
 .info,
 .playlist {
   margin-top: 30px;
+  background-color: #333;
+  padding: 5px;
+  text-align: center;
 }
 
 .header {
@@ -84,14 +126,21 @@ h5 {
 
 /* -----------Battle Page--------------*/
 #artistImage1 {
-  /* margin-top: 60px; */
+    /* position: relative; */
   width: 100%;
-  z-index: -1
+  z-index: -1;
 }
 
 #artistImage2 {
+    /* position: relative; */
   width: 100%;
-  z-index: -1
+  z-index: -1;
+}
+
+#artistImage1:hover,
+#artistImage2:hover {
+  opacity: 0.6;
+  transition: opacity 1s;
 }
 
 span {
@@ -105,6 +154,7 @@ span {
 }
 
 .artist-box {
+    position: absolute;
   padding: 2em;
   border: 1px solid #ccc;
   display: block;
@@ -116,6 +166,7 @@ span {
   background-size: 100% 202%;
   transition: all 0.2s ease;
   animation: down-bump 0.7s ease;
+  z-index: 1;
 }
 
 .artist-box:hover {
@@ -130,13 +181,105 @@ span {
   color: white;
 }
 
-
 .box-position-1 {
-    position: absolute;
-    left: 15px;
+  position: absolute;
+  left: 15px;
 }
 
 .box-position-2 {
-    position: absolute;
-    right: 15px;
+  position: absolute;
+  right: 15px;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.scores {
+  color: #fff;
+  position: absolute;
+  left: 20%;
+  top: 10%;
+  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 2;
+}
+.highScores {
+  color: #fff;
+  position: absolute;
+  left: 20%;
+  top: 50%;
+  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 2;
+}
+
+#score,
+#highScore {
+  display: inline;
+  color: #1ed760;
+}
+
+.reset {
+  top: 30%;
+  right: 10%;
+  padding: 10px 25px 10px;
+  line-height: 16px;
+  letter-spacing: 1.4px;
+  border-radius: 500px;
+  position: absolute;
+  background-color: #1bc156;
+  color: #fff;
+  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
+  /* margin-left: 10%;
+  margin-right: 10%; */
+}
+/* -----------Media Queries--------------*/
+
+@media only screen and (min-width: 992px) {
+  .battle-photo {
+    opacity: 0.6;
+    width: 80vw;
+    z-index: -1;
+  }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .battle-photo {
+    opacity: 0.6;
+    width: 90vw;
+    z-index: -1;
+  }
+  .battle-text {
+    top: 50%;
+    left: 15%;
+    right: 15%;
+  }
+  .battle-button {
+    top: 75%;
+    left: 25%;
+    right: 25%;
+  }
+  .reset {
+    top: 35%;
+    right: 5%;
+    padding: 5px 15px 5px;
+  }
+  .scores, .highScores {
+      left: 10%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .battle-photo {
+    opacity: 0.6;
+    width: 90vw;
+  }
+  .battle-button {
+    top: 70%;
+    left: 5%;
+    right: 5%;
+  }
 }
