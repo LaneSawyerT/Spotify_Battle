@@ -314,9 +314,6 @@ span {
     width: 76%;
     margin: 0;
     padding: 13px 15px 13px;
-    /* transform: translate(25%, -50%); */
-    /* margin-left: 5%;
-    margin-right: 5%; */
   }
   h1 {
     font-size: 2rem;
@@ -337,5 +334,8 @@ span {
   .highScores {
     left: 10%;
     top: 65%;
+  }
+  p {
+      margin-bottom: -0.5rem;
   }
 }
