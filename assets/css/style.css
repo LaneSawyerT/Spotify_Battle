@@ -41,10 +41,10 @@ h5 {
 }
 
 .nav-bar {
-position: relative; 
+  position: relative;
   background-color: #333;
   box-shadow: 2px 2px 2px 2px #333;
-  z-index: 2; 
+  z-index: 2;
 }
 
 .vs {
@@ -54,9 +54,9 @@ position: relative;
 }
 
 .vs-photo {
-    width: 40%;
-    left:15%;
-    right:15%;
+  width: 40%;
+  left: 15%;
+  right: 15%;
 }
 
 .footer {
@@ -98,7 +98,7 @@ position: relative;
   letter-spacing: -0.02em;
   line-height: 1.2;
   margin-bottom: 30px;
-      margin-top: 10px;
+  margin-top: 10px;
   font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
 }
 
@@ -106,7 +106,7 @@ position: relative;
   position: absolute;
   padding: 16px 40px 16px;
   line-height: 16px;
-  letter-spacing: 1.4px;
+  letter-spacing: 0.8px;
   border-radius: 500px;
   margin-left: 10%;
   margin-right: 10%;
@@ -140,17 +140,16 @@ position: relative;
 
 /* -----------Battle Page--------------*/
 #artistImage1 {
-     /* position: relative;  */
+  /* position: relative;  */
   width: 100%;
   /* z-index: -1; */
 }
 
 #artistImage2 {
-    /* position: relative; */
+  /* position: relative; */
   width: 100%;
   /* z-index: -1; */
-      margin-bottom: 10%;
-
+  margin-bottom: 10%;
 }
 
 #artistImage1:hover,
@@ -170,7 +169,7 @@ span {
 }
 
 .artist-box {
-    position: absolute;
+  position: absolute;
   padding: 2em;
   border: 1px solid #ccc;
   display: block;
@@ -285,21 +284,22 @@ span {
     right: 5%;
     padding: 5px 15px 5px;
   }
-  .scores, .highScores {
-      left: 10%;
+  .scores,
+  .highScores {
+    left: 10%;
   }
   .counter {
-      font-size: 16px;
+    font-size: 16px;
   }
 }
 
 @media only screen and (max-width: 767px) {
-.artist-box {
-        width: 92%;
-}
-img {
+  .artist-box {
+    width: 93%;
+  }
+  img {
     margin-top: 17%;
-}
+  }
   .battle-photo {
     opacity: 0.6;
     width: 90vw;
@@ -308,24 +308,29 @@ img {
     top: 70%;
     right: 5%;
     left: -5%;
+    padding: 13px 15px 13px;
+    transform: translate(25%, -50%);
+    /* margin-left: 5%;
+    margin-right: 5%; */
   }
   h1 {
-          font-size: 2rem;
+    font-size: 2rem;
   }
   h3 {
-          font-size: 1.5rem;
+    font-size: 1.5rem;
   }
   .reset {
-      position: relative;
-      left: 40%;
+    position: relative;
+    left: 40%;
+    top: 0;
     margin-bottom: 15px;
-    }
+  }
   .scores {
-      left: 10%;
+    left: 10%;
     top: 45%;
   }
   .highScores {
-          left: 10%;
+    left: 10%;
     top: 65%;
   }
 }
