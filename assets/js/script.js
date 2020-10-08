@@ -1,12 +1,14 @@
+// Bypasses Cors to display the api info
 const baseURL = "https://cors-anywhere.herokuapp.com/api.t4ils.dev/artistInfo?artistid=";
 var returnedData;
 
+
+// Collects data from api
 function getData(artistID, callback) {
   var xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
-      // console.log(JSON.parse(this.responseText))
       let timer = setTimeout(callback(JSON.parse(this.responseText)), 200);
     } else if (this.readyState === 4 && this.status === 500) {
       let timer = setTimeout(getData(artistID, callback), 500);
@@ -17,11 +19,14 @@ function getData(artistID, callback) {
   xhr.send();
 }
 
+// Remembers High Score
 let highScore = sessionStorage.getItem("score") || 0;
 document.getElementById("highScore").innerText = highScore;
 
+// Used artists will be put here so they do not get repeated
 var usedID = [];
 
+// List of artists
 var artistID = [
   "0LcJLqbBmaGUft1e9Mm8HV",
   "4dpARuHxo51G3z768sgnrY",
@@ -75,11 +80,7 @@ var artistID = [
   "23zg3TcAtWQy7J6upgbUnj",
 ];
 
-// var artistID1 = Math.floor((Math.random() * 50));
-// var artistID2 = Math.floor((Math.random() * 50));
-
-
-
+// Retrives images and will display loading image until found
 function retrieveAPIData(artist, artistNum) {
   let artistDiv = artistNum === 1 ? "artistImage1" : "artistImage2";
   document.getElementById(artistDiv).src = "./assets/images/loading.png";
@@ -89,10 +90,13 @@ function retrieveAPIData(artist, artistNum) {
   });
 }
 
+// Displays Instructions on arrival
 $(document).ready(function(){
         $("#instructionModal").modal('show');
     });
 
+
+// Collects and Displays the artist info such as image/name/count
 function displayArtist(data, artistNum) {
   let artistID = artistNum === 1 ? "artistImage1" : "artistImage2";
   let artistName = artistNum === 1 ? "artistName1" : "artistName2";
@@ -105,6 +109,7 @@ function displayArtist(data, artistNum) {
   document.getElementById(counter).style.display = "none";
 }
 
+// Will initiate when player reaches the end of the game 
 function getNextNumber() {
   if (usedID.length === 50) {
     setTimeout(function () {
@@ -122,9 +127,12 @@ function getNextNumber() {
   }
 }
 
+// Carries onto the next artist after one artist loses
 retrieveAPIData(getNextNumber(), 1);
 retrieveAPIData(getNextNumber(), 2);
 
+
+// Main Game Function for artist 1
 document.getElementById("a1").addEventListener("click", function () {
   let a1count = parseInt(document.getElementById("artistCount1").innerText);
   let a2count = parseInt(document.getElementById("artistCount2").innerText);
@@ -145,7 +153,6 @@ document.getElementById("a1").addEventListener("click", function () {
     setTimeout(function() {
     $('#correctModal').modal('show');
 }, 2000);
-    // $("#correctModal").modal("show");
   } else {
     
     dispCount(
@@ -159,10 +166,11 @@ document.getElementById("a1").addEventListener("click", function () {
     setTimeout(function() {
     $('#falseModal').modal('show');
 }, 2000);
-    // $("#falseModal").modal("show");
   }
 });
 
+
+// Main Game Function for Artist 2
 document.getElementById("a2").addEventListener("click", function () {
   let a1count = parseInt(document.getElementById("artistCount1").innerText);
   let a2count = parseInt(document.getElementById("artistCount2").innerText);
@@ -183,9 +191,9 @@ document.getElementById("a2").addEventListener("click", function () {
     setTimeout(function() {
     $('#correctModal').modal('show');
 }, 2000);
-    // $("#correctModal").modal("show");
+    
   } else {
-    // $("#falseModal").modal("show");
+    
     setTimeout(function() {
     $('#falseModal').modal('show');
 }, 2000);
@@ -200,6 +208,7 @@ document.getElementById("a2").addEventListener("click", function () {
   }
 });
 
+// Displays the numbers counting up
 function dispCount(textEl, numbers) {
   document.getElementById(textEl).style.display = "block";
   setTimeout(function () {
@@ -227,9 +236,9 @@ function incrementScore() {
 }
 
 function setHighScore() {
-  // set currentCounter variable to the contents of "counter" or 0 if "counter" doesn't exist yet
+  // set setHighScore variable to the contents of "score" or 0 if "score" doesn't exist yet
   let highScore = sessionStorage.getItem("score") || 0;
-  // display the current count in an alert
+  // display the current count 
   let oldScore = parseInt(document.getElementById("score").innerText);
   
   if (oldScore > highScore) {
@@ -239,6 +248,7 @@ function setHighScore() {
 }
 
 
+// Resets the High Score
 function resetHighScore() {
     sessionStorage.removeItem("score");
     document.getElementById("highScore").innerText = 0;

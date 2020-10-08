@@ -1,4 +1,4 @@
-/* -----------Colours and Styling--------------*/
+/* -----------Colours // Styling // Positioning--------------*/
 
 .main {
   background-color: #000;
@@ -100,7 +100,7 @@ h5 {
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1.2;
-  margin-bottom: 30px;
+  margin-bottom: -15px;
   margin-top: 10px;
   font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
 }
@@ -124,7 +124,6 @@ h5 {
   margin-top: 30px;
   background-color: #333;
   padding: 5px;
-  /* text-align: center; */
   margin-bottom: 5%;
 }
 
@@ -143,15 +142,11 @@ h5 {
 
 /* -----------Battle Page--------------*/
 #artistImage1 {
-  /* position: relative;  */
-  width: 100%;
-  /* z-index: -1; */
+ width: 100%;
 }
 
 #artistImage2 {
-  /* position: relative; */
   width: 100%;
-  /* z-index: -1; */
   margin-bottom: 10%;
 }
 
@@ -251,8 +246,6 @@ span {
   background-color: #1bc156;
   color: #fff;
   font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
-  /* margin-left: 10%;
-  margin-right: 10%; */
 }
 /* -----------Media Queries--------------*/
 
@@ -265,6 +258,7 @@ span {
 }
 
 @media only screen and (max-width: 991px) and (min-width: 768px) {
+    /* Tablet Sizes */
   .battle-photo {
     opacity: 0.6;
     width: 90vw;
@@ -297,6 +291,7 @@ span {
 }
 
 @media only screen and (max-width: 767px) {
+    /* Phone Sizes */
   .artist-box {
     width: 93%;
   }
@@ -309,7 +304,6 @@ span {
   }
   .battle-button {
     top: 70%;
-    /* right: 5%; */
     left: 12%;
     width: 76%;
     margin: 0;
