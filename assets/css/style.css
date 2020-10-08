@@ -1,26 +1,35 @@
 /* -----------Colours // Styling // Positioning--------------*/
 
+body {
+  color: #fff;
+  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
 .main {
   background-color: #000;
 }
 
 .info-text {
-  color: #fff;
-  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
+  font-weight: 400;
   padding: 10px;
   text-indent: 25px;
 }
 
-i {
+h1,
+h2 {
+  text-align: center;
+}
+
+i,
+h5,
+a:hover {
   color: #1ed760;
 }
 
 a {
   color: #fff;
-}
-
-a:hover {
-  color: #1ed760;
 }
 
 a:link {
@@ -33,15 +42,6 @@ a:link {
   color: #fff;
 }
 
-h1,
-h2 {
-  text-align: center;
-}
-
-h5 {
-  color: #1ed760;
-}
-
 .nav-bar {
   position: relative;
   background-color: #333;
@@ -50,7 +50,6 @@ h5 {
 }
 
 .vs {
-  color: #fff;
   text-align: center;
   position: relative;
 }
@@ -70,8 +69,6 @@ h5 {
 }
 
 .footer-text {
-  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
-  color: #fff;
   text-align: center;
   padding-top: 20px;
 }
@@ -84,25 +81,18 @@ h5 {
 .battle-text {
   position: absolute;
   text-align: center;
-  color: #fff;
-  font-weight: 900;
-  letter-spacing: -0.02em;
   line-height: 1.2;
   margin-bottom: 30px;
   top: 60%;
   left: 10%;
   right: 10%;
-  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
 }
+
 .battle-text-mobile {
   text-align: center;
-  color: #fff;
-  font-weight: 900;
-  letter-spacing: -0.02em;
   line-height: 1.2;
   margin-bottom: -15px;
   margin-top: 10px;
-  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
 }
 
 .battle-button {
@@ -131,18 +121,16 @@ h5 {
   position: relative;
   top: 15px;
   width: 100%;
+  font-weight: 900;
   text-align: center;
   color: #1ed760;
-  font-weight: 900;
-  letter-spacing: -0.02em;
   line-height: 1.2;
   margin-bottom: 30px;
-  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
 }
 
 /* -----------Battle Page--------------*/
 #artistImage1 {
- width: 100%;
+  width: 100%;
 }
 
 #artistImage2 {
@@ -158,11 +146,11 @@ h5 {
 
 span {
   display: none;
-  color: white;
 }
 
 .counter {
   color: black;
+  font-weight: 400;
   font-size: 14px;
 }
 
@@ -209,23 +197,16 @@ span {
 }
 
 .scores {
-  color: #fff;
   position: absolute;
   left: 20%;
   top: 10%;
-  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
-  font-weight: 900;
-  letter-spacing: -0.02em;
   line-height: 2;
 }
+
 .highScores {
-  color: #fff;
   position: absolute;
   left: 20%;
   top: 50%;
-  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
-  font-weight: 900;
-  letter-spacing: -0.02em;
   line-height: 2;
 }
 
@@ -245,7 +226,6 @@ span {
   position: absolute;
   background-color: #1bc156;
   color: #fff;
-  font-family: Circular, Helvetica, Arial, sans-serif, IosFix;
 }
 /* -----------Media Queries--------------*/
 
@@ -258,7 +238,7 @@ span {
 }
 
 @media only screen and (max-width: 991px) and (min-width: 768px) {
-    /* Tablet Sizes */
+  /* Tablet Sizes */
   .battle-photo {
     opacity: 0.6;
     width: 90vw;
@@ -291,7 +271,7 @@ span {
 }
 
 @media only screen and (max-width: 767px) {
-    /* Phone Sizes */
+  /* Phone Sizes */
   .artist-box {
     width: 93%;
   }
@@ -330,6 +310,6 @@ span {
     top: 65%;
   }
   p {
-      margin-bottom: -0.5rem;
+    margin-bottom: -0.5rem;
   }
 }

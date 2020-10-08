@@ -16,34 +16,40 @@
     <title>Spotify Battle</title>
   </head>
 
-<!-- Header -->
+  <!-- Header -->
   <body class="main">
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12 nav-bar">
-        
-          <h1 class="header"><a href="index.html"><i class="fab fa-spotify"></i> Spotify Battle</a></h1>
+          <h1 class="header">
+            <a href="index.html"
+              ><i class="fab fa-spotify"></i> Spotify Battle</a
+            >
+          </h1>
           <p class="scores">Score: <span id="score">0</span></p>
           <p class="highScores">High Score: <span id="highScore">0</span></p>
           <button
-              class="btn btn-success btn-sm reset"
-              type="button"
-              onclick="resetHighScore()"
-            >
-              Reset High Score
-            </button>
+            class="btn btn-success btn-sm reset"
+            type="button"
+            onclick="resetHighScore()"
+          >
+            Reset High Score
+          </button>
         </div>
-        
       </div>
       <!-- Artist 1 -->
       <div class="row">
         <div class="offset-lg-2 col-lg-8 artistID1" id="a1">
           <div class="shadow p-3 mb-5 col-lg-5 artist-box box-position-1">
-            <h2 id="artistName1"></h2>
+            <h2 id="artistName1">Artist Loading...</h2>
             <span id="artistCount1"></span>
             <p class="counter" id="disCount1"></p>
           </div>
-          <img id="artistImage1" />
+          <img
+            id="artistImage1"
+            src="./assets/images/loading.png"
+            alt="Artist Image 1"
+          />
         </div>
       </div>
       <div class="row">
@@ -55,56 +61,93 @@
       <div class="row">
         <div class="offset-lg-2 col-lg-8 artistID2" id="a2">
           <div class="shadow p-3 mb-5 col-lg-5 artist-box box-position-2">
-            <h2 id="artistName2"></h2>
+            <h2 id="artistName2">Artist Loading...</h2>
             <span id="artistCount2"></span>
             <p class="counter" id="disCount2"></p>
           </div>
-          <img id="artistImage2" />
+          <img
+            id="artistImage2"
+            src="./assets/images/loading.png"
+            alt="Artist Image 2"
+          />
         </div>
       </div>
     </div>
     <!-- Instruction Modal -->
-<div class="modal fade" id="instructionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">How to Play:</h5>
-      </div>
-      <div class="modal-body text-center">
-      <img
+    <div
+      class="modal fade"
+      id="instructionModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modalLongTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLongTitle">How to Play:</h5>
+          </div>
+          <div class="modal-body text-center">
+            <img
               src="assets/images/competition.png"
               class="img-fluid vs-photo"
               alt="Versus Photo"
-            /><br>
-        Click anywhere on the picture or the artists name if you think that artist has more monthly listeners. Keep on clicking until you end up with the final artist who has the highest monthly totals! Keep aiming for a high score!
-        <br><br>
-        <small>*Loading speeds may vary.</small>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            /><br />
+            Click anywhere on the picture or the artists name if you think that
+            artist has more monthly listeners. Keep on clicking until you end up
+            with the final artist who has the highest monthly totals! Keep
+            aiming for a high score!
+            <br /><br />
+            <small>*Loading speeds may vary.</small>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
     <!-- Correct Modal -->
     <div
       class="modal fade"
       id="correctModal"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="exampleModalCenterTitle"
+      aria-labelledby="modalResultsTitle"
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" >Results</h5>
+            <h5 class="modal-title" id="modalResultsTitle">Results</h5>
           </div>
           <div class="modal-body">
-            You got it right! Good job and keep clicking!<br>
-            <div style="width:100%;height:0;padding-bottom:57%;position:relative;"><iframe src="https://giphy.com/embed/1yjZXySg7tSohpcmUM" width="100%" height="100%" style="position:absolute"  class="giphy-embed"></iframe></div><p><a href="https://giphy.com/gifs/queen-we-are-the-champions-1yjZXySg7tSohpcmUM">via GIPHY</a></p>
-
-
+            You got it right! Good job and keep clicking!<br />
+            <div
+              style="
+                width: 100%;
+                height: 0;
+                padding-bottom: 57%;
+                position: relative;
+              "
+            >
+              <iframe
+                src="https://giphy.com/embed/1yjZXySg7tSohpcmUM"
+                style="position: absolute; width: 100%; height: 100%;"
+                class="giphy-embed"
+              ></iframe>
+            </div>
+            <p>
+              <a
+                href="https://giphy.com/gifs/queen-we-are-the-champions-1yjZXySg7tSohpcmUM"
+                >via GIPHY</a
+              >
+            </p>
           </div>
           <div class="modal-footer">
             <button
@@ -119,18 +162,45 @@
       </div>
     </div>
     <!-- False Modal -->
-    <div class="modal fade" id="falseModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Results</h5>
-      </div>
-      <div class="modal-body">
-        That's not correct! But listen to the GIF. <br>
-        <div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/3o6MbaH9LYlaVpHWBa" width="100%" height="100%" style="position:absolute" class="giphy-embed"></iframe></div><p><a href="https://giphy.com/gifs/music-video-aaliyah-try-again-3o6MbaH9LYlaVpHWBa">via GIPHY</a></p>
-      </div>
-      <div class="modal-footer">
-        <button
+    <div
+      class="modal fade"
+      id="falseModal"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Results</h5>
+          </div>
+          <div class="modal-body">
+            That's not correct! But listen to the GIF. <br />
+            <div
+              style="
+                width: 100%;
+                height: 0;
+                padding-bottom: 56%;
+                position: relative;
+              "
+            >
+              <iframe
+                src="https://giphy.com/embed/3o6MbaH9LYlaVpHWBa"
+                style="position: absolute; width: 100%; height: 100%;"
+                class="giphy-embed"
+              ></iframe>
+            </div>
+            <p>
+              <a
+                href="https://giphy.com/gifs/music-video-aaliyah-try-again-3o6MbaH9LYlaVpHWBa"
+                >via GIPHY</a
+              >
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
               onclick="window.location.reload();"
               type="button"
               class="btn btn-secondary"
@@ -138,23 +208,50 @@
             >
               Try Again
             </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<!---GAME OVER! Modal-->
-<div class="modal fade" id="GameOverModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Congrats!</h5>
-      </div>
-      <div class="modal-body">
-        You beat the <s>system</s> game! Congrats! <br>
-        <div style="width:100%;height:0;padding-bottom:55%;position:relative;"><iframe src="https://giphy.com/embed/3o72EWtjXLzk1Az7P2" width="100%" height="100%" style="position:absolute" class="giphy-embed"></iframe></div><p><a href="https://giphy.com/gifs/cmtmusicawards-cmt-awards-2016-music-3o72EWtjXLzk1Az7P2">via GIPHY</a></p>
-      </div>
-      <div class="modal-footer">
-        <button
+    <!---GAME OVER! Modal-->
+    <div
+      class="modal fade"
+      id="GameOverModal"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Congrats!</h5>
+          </div>
+          <div class="modal-body">
+            You beat the <s>system</s> game! Congrats! <br />
+            <div
+              style="
+                width: 100%;
+                height: 0;
+                padding-bottom: 55%;
+                position: relative;
+              "
+            >
+              <iframe
+                src="https://giphy.com/embed/3o72EWtjXLzk1Az7P2"
+                style="position: absolute; width: 100%; height: 100%;"
+                class="giphy-embed"
+              ></iframe>
+            </div>
+            <p>
+              <a
+                href="https://giphy.com/gifs/cmtmusicawards-cmt-awards-2016-music-3o72EWtjXLzk1Az7P2"
+                >via GIPHY</a
+              >
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
               onclick="window.location.reload();"
               type="button"
               class="btn btn-secondary"
@@ -162,15 +259,20 @@
             >
               Play Again
             </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!---Footer-->
-<div class="col-lg-12 footer">
+    <!---Footer-->
+    <div class="col-lg-12 footer">
       <p class="footer-text">
-      All information is provided from <a href="https://www.spotify.com">Spotify®</a> with supporting help from <a href="https://github.com/evilarceus/sp-playcount-librespot">Evilarceus's API</a> to collect the data.
+        All information is provided from
+        <a href="https://www.spotify.com">Spotify®</a> with supporting help from
+        <a href="https://github.com/evilarceus/sp-playcount-librespot"
+          >Evilarceus's API</a
+        >
+        to collect the data.
       </p>
     </div>
 

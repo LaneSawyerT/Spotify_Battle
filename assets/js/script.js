@@ -1,23 +1,7 @@
 // Bypasses Cors to display the api info
-const baseURL = "https://cors-anywhere.herokuapp.com/api.t4ils.dev/artistInfo?artistid=";
+const baseURL =
+  "https://cors-anywhere.herokuapp.com/api.t4ils.dev/artistInfo?artistid=";
 var returnedData;
-
-
-// Collects data from api
-function getData(artistID, callback) {
-  var xhr = new XMLHttpRequest();
-
-  xhr.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-      let timer = setTimeout(callback(JSON.parse(this.responseText)), 200);
-    } else if (this.readyState === 4 && this.status === 500) {
-      let timer = setTimeout(getData(artistID, callback), 500);
-    }
-  };
-
-  xhr.open("GET", baseURL + artistID);
-  xhr.send();
-}
 
 // Remembers High Score
 let highScore = sessionStorage.getItem("score") || 0;
@@ -80,6 +64,23 @@ var artistID = [
   "23zg3TcAtWQy7J6upgbUnj",
 ];
 
+// Collects data from api
+function getData(artistID, callback) {
+  var xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
+      let timer = setTimeout(callback(JSON.parse(this.responseText)), 200);
+    } else if (this.readyState === 4 && this.status === 500) {
+      // Retries if API error due to free nature of the API I use
+      let timer = setTimeout(getData(artistID, callback), 500);
+    }
+  };
+
+  xhr.open("GET", baseURL + artistID);
+  xhr.send();
+}
+
 // Retrives images and will display loading image until found
 function retrieveAPIData(artist, artistNum) {
   let artistDiv = artistNum === 1 ? "artistImage1" : "artistImage2";
@@ -90,12 +91,6 @@ function retrieveAPIData(artist, artistNum) {
   });
 }
 
-// Displays Instructions on arrival
-$(document).ready(function(){
-        $("#instructionModal").modal('show');
-    });
-
-
 // Collects and Displays the artist info such as image/name/count
 function displayArtist(data, artistNum) {
   let artistID = artistNum === 1 ? "artistImage1" : "artistImage2";
@@ -103,13 +98,14 @@ function displayArtist(data, artistNum) {
   let artistCount = artistNum === 1 ? "artistCount1" : "artistCount2";
   let counter = artistNum === 1 ? "disCount1" : "disCount2";
   document.getElementById(artistID).src = data["data"]["header_image"]["image"];
+  document.getElementById(artistID).alt = data["data"]["info"]["name"];
   document.getElementById(artistName).innerText = data["data"]["info"]["name"];
   document.getElementById(artistCount).innerText =
     data["data"]["monthly_listeners"]["listener_count"];
   document.getElementById(counter).style.display = "none";
 }
 
-// Will initiate when player reaches the end of the game 
+// Will initiate when player reaches the end of the game
 function getNextNumber() {
   if (usedID.length === 50) {
     setTimeout(function () {
@@ -127,85 +123,43 @@ function getNextNumber() {
   }
 }
 
-// Carries onto the next artist after one artist loses
-retrieveAPIData(getNextNumber(), 1);
-retrieveAPIData(getNextNumber(), 2);
-
+function checkWinner(artistNum) {
+  let a1count = parseInt(document.getElementById("artistCount1").innerText);
+  let a2count = parseInt(document.getElementById("artistCount2").innerText);
+  let winner = artistNum === 1 ? a1count > a2count : a2count > a1count;
+  dispCount(
+    "disCount1",
+    parseInt(document.getElementById("artistCount1").innerText)
+  );
+  dispCount(
+    "disCount2",
+    parseInt(document.getElementById("artistCount2").innerText)
+  );
+  if (winner) {
+    incrementScore();
+    var artistID = getNextNumber();
+    setTimeout(function () {
+      artNum = artistNum === 1 ? 2 : 1;
+      retrieveAPIData(artistID, artNum);
+    }, 4000);
+    setTimeout(function () {
+      $("#correctModal").modal("show");
+    }, 2000);
+  } else {
+    setTimeout(function () {
+      $("#falseModal").modal("show");
+    }, 2000);
+  }
+}
 
 // Main Game Function for artist 1
 document.getElementById("a1").addEventListener("click", function () {
-  let a1count = parseInt(document.getElementById("artistCount1").innerText);
-  let a2count = parseInt(document.getElementById("artistCount2").innerText);
-  if (a1count > a2count) {
-    incrementScore();
-    var artistID = getNextNumber();
-    dispCount(
-      "disCount1",
-      parseInt(document.getElementById("artistCount1").innerText)
-    );
-    dispCount(
-      "disCount2",
-      parseInt(document.getElementById("artistCount2").innerText)
-    );
-    setTimeout(function () {
-      retrieveAPIData(artistID, 2);
-    }, 4000);
-    setTimeout(function() {
-    $('#correctModal').modal('show');
-}, 2000);
-  } else {
-    
-    dispCount(
-      "disCount1",
-      parseInt(document.getElementById("artistCount1").innerText)
-    );
-    dispCount(
-      "disCount2",
-      parseInt(document.getElementById("artistCount2").innerText)
-    );
-    setTimeout(function() {
-    $('#falseModal').modal('show');
-}, 2000);
-  }
+  checkWinner(1);
 });
-
 
 // Main Game Function for Artist 2
 document.getElementById("a2").addEventListener("click", function () {
-  let a1count = parseInt(document.getElementById("artistCount1").innerText);
-  let a2count = parseInt(document.getElementById("artistCount2").innerText);
-  if (a2count > a1count) {
-    incrementScore();
-    var artistID = getNextNumber();
-    dispCount(
-      "disCount1",
-      parseInt(document.getElementById("artistCount1").innerText)
-    );
-    dispCount(
-      "disCount2",
-      parseInt(document.getElementById("artistCount2").innerText)
-    );
-    setTimeout(function () {
-      retrieveAPIData(artistID, 1);
-    }, 4000);
-    setTimeout(function() {
-    $('#correctModal').modal('show');
-}, 2000);
-    
-  } else {
-    
-    setTimeout(function() {
-    $('#falseModal').modal('show');
-}, 2000);
-    dispCount(
-      "disCount1",
-      parseInt(document.getElementById("artistCount1").innerText)
-    );
-    dispCount(
-      "disCount2",
-      parseInt(document.getElementById("artistCount2").innerText)
-    );
-  }
+  checkWinner(2);
 });
 
 // Displays the numbers counting up
@@ -238,19 +192,26 @@ function incrementScore() {
 function setHighScore() {
   // set setHighScore variable to the contents of "score" or 0 if "score" doesn't exist yet
   let highScore = sessionStorage.getItem("score") || 0;
-  // display the current count 
+  // display the current count
   let oldScore = parseInt(document.getElementById("score").innerText);
-  
+
   if (oldScore > highScore) {
-      let newHigh = sessionStorage.setItem("score", oldScore);
-      document.getElementById("highScore").innerText = oldScore;
+    let newHigh = sessionStorage.setItem("score", oldScore);
+    document.getElementById("highScore").innerText = oldScore;
   }
 }
 
-
 // Resets the High Score
 function resetHighScore() {
-    sessionStorage.removeItem("score");
-    document.getElementById("highScore").innerText = 0;
-
+  sessionStorage.removeItem("score");
+  document.getElementById("highScore").innerText = 0;
 }
+
+// Displays Instructions on arrival
+$(document).ready(function () {
+  $("#instructionModal").modal("show");
+});
+
+// Initial game run
+retrieveAPIData(getNextNumber(), 1);
+retrieveAPIData(getNextNumber(), 2);
