@@ -1,6 +1,6 @@
 // Bypasses Cors to display the api info
 const baseURL =
-  "https://cors-anywhere.herokuapp.com/api.t4ils.dev/artistInfo?artistid=";
+  "https://api.t4ils.dev/artistInfo?artistid=";
 var returnedData;
 
 // Remembers High Score
