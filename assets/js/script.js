@@ -23,9 +23,7 @@ var artistID = [
   "26dSoYclwsYLMAKD3tpOr4",
   "0du5cEVh5yTK9QJze8zA0C",
   "7CajNmpbOovFoOoasH2HaY",
-  "4kYSro6naA4h99UJvo89HB",
   "25uiPmTg16RbhZWAqwLBy5",
-  "4gzpq5DPGxSnKTe4SA8HAU",
   "0oSGxfWSnnOXhD2fKuz2Gy",
   "6M2wZ9GZgrQXHCFfjv46we",
   "6eUKZXaKkcviH0Ku9w2n3V",
@@ -35,7 +33,6 @@ var artistID = [
   "1vyhD5VmyZ7KMfW5gqLgo5",
   "0hEurMDQu99nJRq8pTxO14",
   "53XhwfbYqKCa1cC15pYq2q",
-  "5K4W6rqBFWDnAN6FQUkS6x",
   "2YZyLoL8N0Wb9xBt1NhZWg",
   "6LuN9FCkKOj5PcnpouEgny",
   "4BxCuXFJrSWGi1KHcVqaU4",
@@ -85,6 +82,7 @@ function getData(artistID, callback) {
 function retrieveAPIData(artist, artistNum) {
   let artistDiv = artistNum === 1 ? "artistImage1" : "artistImage2";
   document.getElementById(artistDiv).src = "./assets/images/loading.png";
+  console.log(artistID[artist]);
   getData(artistID[artist], function (data) {
     returnedData = data;
     displayArtist(data, artistNum);
@@ -93,6 +91,7 @@ function retrieveAPIData(artist, artistNum) {
 
 // Collects and Displays the artist info such as image/name/count
 function displayArtist(data, artistNum) {
+  console.log()
   let artistID = artistNum === 1 ? "artistImage1" : "artistImage2";
   let artistName = artistNum === 1 ? "artistName1" : "artistName2";
   let artistCount = artistNum === 1 ? "artistCount1" : "artistCount2";
@@ -215,3 +214,5 @@ $(document).ready(function () {
 // Initial game run
 retrieveAPIData(getNextNumber(), 1);
 retrieveAPIData(getNextNumber(), 2);
+
+

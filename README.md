@@ -259,11 +259,7 @@ Bruno Mars - 0du5cEVh5yTK9QJze8zA0C
 
 Calvin Harris - 7CajNmpbOovFoOoasH2HaY
 
-Cardi B - 4kYSro6naA4h99UJvo89HB
-
 Charli XCX - 25uiPmTg16RbhZWAqwLBy5
-
-Coldplay - 4gzpq5DPGxSnKTe4SA8HAU
 
 David Bowie - 0oSGxfWSnnOXhD2fKuz2Gy
 
