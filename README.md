@@ -103,7 +103,7 @@ Features - <br>
     - Shuttershocks image helped me find a good image to use for the home page that would evoke a sense of a friendly music ‘battle’. 
 1. [Flat Icon](https://www.flaticon.com)
     - Flat icon was used for the photo in the instructions of how to play to show that it is a battle or vs. 
-1. [CORS Anywhere](https://github.com/Rob--W/cors-anywhere)
+1. [DAD CORS](https://dadcors.herokuapp.com/)
     - The Api wouldn’t work without CORS being enabled so I added some code from CORS Anywhere to help it run.
 
 
