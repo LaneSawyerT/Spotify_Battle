@@ -1,6 +1,6 @@
 // Bypasses Cors to display the api info
 const baseURL =
-  "https://api.t4ils.dev/artistInfo?artistid=";
+  "https://dadcors.herokuapp.com/";
 var returnedData;
 
 // Remembers High Score
